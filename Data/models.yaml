@@ -1,0 +1,87 @@
+RF:
+  max_depth:
+    min: 3
+    max: 30
+  n_estimators:
+    min: 3
+    max: 110
+  min_samples_leaf:
+    min: 10
+    max: 100
+
+MLP:
+  learning_rate_init:
+    min: 0.001
+    max: 0.1
+  solver: [adam, sgd, lbfgs]
+  activation: [logistic, tanh, relu]
+  n_layer1:
+    min: 5
+    max: 25
+  n_layer2:
+    min: 5
+    max: 25
+
+files:
+  features: ./data/features.csv
+  humanForecasts: ./data/humanForecasts.csv
+
+feature_groups:
+  author_features: ["author_count", "univ_rank", "author_count"]
+
+  references_features:
+    [
+      "influentialReferencesCount",
+      "reference_background",
+      "reference_result",
+      "reference_methodology",
+      "references_count",
+    ]
+
+  text_features:
+    [
+      "reading_score",
+      "subjectivity",
+      "sentiment",
+      "num_hypo_tested",
+      "real_p",
+      "real_p_sign",
+      "p_val_range",
+      "num_significant",
+      "sample_size",
+      "extend_p",
+    ]
+
+  popularity_features:
+    [
+      "abstract_m1",
+      "Full-text_m1",
+      "pdf_m1",
+      "altmetric_score",
+      "abstract_change",
+      "Full-text_change",
+      "pdf_change",
+      "tweets_within_month",
+    ]
+
+  result_type:
+    [
+      "new_results",
+      "confirmatory_results",
+      "contradictory_results",
+      "neutral_results",
+    ]
+
+  other: ["funded"]
+  meta_features: ["doi"]
+  prediction: "published_within_year"
+  baseline: []
+  categorical:
+    [
+      "sentiment",
+      "real_p_sign",
+      "new_results",
+      "confirmatory_results",
+      "contradictory_results",
+      "neutral_results",
+    ]
